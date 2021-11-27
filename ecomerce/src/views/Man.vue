@@ -1,41 +1,31 @@
 <template>
   <div class="home">
-    <h1>Hello World</h1>
-    <v-col>
-      <v-row v-for="product in products" :key="product.id">
-        <ProductCard
-          :description="product.description"
-          :price="product.price"
-          :product="product.title"
-        ></ProductCard>
-      </v-row>
-    </v-col>
+    <ListProducts :category="'products/category/electronics'"></ListProducts>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import ProductCard from "../components/ProductCard.vue";
-import axios from "axios";
+
+import ListProducts from '../components/ListProducts.vue'
+
 
 export default {
   name: "Man",
   components: {
-    ProductCard,
+    ListProducts,
   },
   data() {
     return {
-      products: [],
-      productName: "",
-      productPice: 0,
-      ProductDescription: "",
+      category: '',
     };
   },
-  created() {
-    let vue = this;
-    axios.get("https://fakestoreapi.com/products").then(function (response) {
-      vue.products = response.data;
-    });
-  },
+
 };
 </script>
+<style scoped>
+.home{
+  margin: auto;
+  padding: auto;
+  width: 50%;
+}
+</style>
